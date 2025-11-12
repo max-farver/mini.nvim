@@ -898,15 +898,15 @@ H.git_args = {
     return { 'version' }
   end,
   clone = function(source, path)
-    local res = {
+	local res = {
       'clone', '--quiet', '--filter=blob:none',
-      '--recurse-submodules', '--also-filter-submodules', '--origin', 'origin',
+      '--origin', 'origin',
       source, path,
-    }
+	}
     -- Use `--also-filter-submodules` only with appropriate version
-    if not (H.cache.git_version.major >= 2 and H.cache.git_version.minor >= 36) then
-      table.remove(res, 5)
-    end
+    -- if not (H.cache.git_version.major >= 2 and H.cache.git_version.minor >= 36) then
+    --   table.remove(res, 5)
+    -- end
     return res
   end,
   stash = function(timestamp)
